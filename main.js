@@ -394,7 +394,7 @@ class ListaEnlazada {
             let existe = false;
             let aux = this.head;
             while (aux != null && existe == false) {
-                if (aux.dato.nombre_usuario === valor) {
+                if (aux.dato.nombre_usuario == valor) {
                     existe = true;
                     //console.log(`Si se encontro el dato "${aux.dato.usuario}" en la lista`);
                     return aux.dato.nombre_usuario;
@@ -414,7 +414,7 @@ class ListaEnlazada {
             let existe = false;
             let aux = this.head;
             while (aux != null && existe == false) {
-                if (aux.dato.contrasenia === valor) {
+                if (aux.dato.contrasenia == valor) {
                     existe = true;
                     //console.log(`Si se encontro el dato "${aux.dato.usuario}" en la lista`);
                     return aux.dato.contrasenia;
@@ -498,15 +498,15 @@ class ListaEnlazada {
             let aux = this.head;
             let contador = 0;
             while (aux != null) {
-                let txt = "<div class=\"peliculasss\" id=\"peliculasss\">";
+                let txt = "<div id=\"p"+contador+"\"><div class=\"peliculasss\" id=\"peliculasss\">";
                 txt += "<img src=\"img/pelis.png\" alt=\"\" id=\"img-peli\">";
                 txt += "<h4 id=\"titulo-peli\">" + aux.dato.nombre_pelicula + "</h4>";
                 txt += "<p id=\"descripcion-peli\">" + aux.dato.descripcion + "</p>";
-                txt += "<input onclick=\"info()\" type=\"button\" value=\"Info\" id=\"info-peli\" class=\"btnpeli\">";
+                txt += "<input onclick=\"info('"+aux.dato.nombre_pelicula+"', '"+aux.dato.descripcion+"','"+aux.dato.puntuacion_star+"','"+aux.dato.precio_Q+"')\" type=\"button\" value=\"Info\" id=\"info-peli\" class=\"btnpeli\">";
                 txt += "<input onclick=\"\" type=\"button\" value=\"Alquilar\" id=\"alquilar-peli\" class=\"btnpeli\">";
                 txt += "<h4 id=\"precio-peli\">Q. " + aux.dato.precio_Q + "</h4>";
                 document.getElementById("listapeliculas").innerHTML += txt;
-                txt = "</div>";
+                txt = "</div></div>";
                 contador++;
                 aux = aux.siguiente;
             }
@@ -737,10 +737,12 @@ function cargaPeliculas(e) {
             let puntuacion_star = users.puntuacion_star;
             let precio_Q = users.precio_Q;
 
+            let desc = descripcion.replace("\r\n","");
+
             //console.log(id_pelicula,nombre_pelicula,descripcion,puntuacion_star,precio_Q);
 
             arbolAVL.insertar(new pelicula(id_pelicula, nombre_pelicula, descripcion, puntuacion_star, precio_Q));
-            listaPelis.agregar(new pelicula(id_pelicula, nombre_pelicula, descripcion, puntuacion_star, precio_Q));
+            listaPelis.agregar(new pelicula(id_pelicula, nombre_pelicula, desc, puntuacion_star, precio_Q));
         }
     }
     lector.readAsText(archivo);
@@ -868,6 +870,7 @@ function entrar() {
 
 //---------------------------------------------------------------- FUNCIONES BOTONES
 function salir() {
+    usu = "";
     document.getElementById("usuario").value = "";
     document.getElementById("password").value = "";
     document.getElementById("login-general").style.display = "";
@@ -937,10 +940,32 @@ function postordenn() {
     abba.postorden();
 }
 
-function info(){
+function info(titulo,descripcionn,estrellas,precio){
     document.getElementById("contenedorvistaPelicula").style.display = "";
+    document.getElementById("estrellas").innerHTML = "";
+    document.getElementById("tituloPe").innerHTML = titulo;
+    document.getElementById("descripcionPe").innerHTML = descripcionn;
+    document.getElementById("preciope").innerHTML = "Q. " +precio;
+    for (let index = 0; index < estrellas; index++) {
+        document.getElementById("estrellas").innerHTML += "<p>★</p>";
+    }
 }
 
 function cerrarinfo(){
     document.getElementById("contenedorvistaPelicula").style.display = "none";
+}
+
+function cambiarEstrellas(){
+    let estre = document.cambioEst.puntua.value;
+    if (estre<=5) {
+        document.getElementById("estrellas").innerHTML = "";
+        for (let index = 0; index < estre; index++) {
+            document.getElementById("estrellas").innerHTML += "<p>★</p>";
+        }
+    } else {
+        document.getElementById("estrellas").innerHTML = "";
+        for (let index = 0; index < 5; index++) {
+            document.getElementById("estrellas").innerHTML += "<p>★</p>";
+        }
+    }
 }
