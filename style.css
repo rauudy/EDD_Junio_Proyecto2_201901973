@@ -1,0 +1,810 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background: #4776e6;
+    background: -webkit-linear-gradient(to right, #8e54e9, #4776e6);
+    background: linear-gradient(to right, #8e54e9, #4776e6);
+}
+
+/*-------------------------------------------- BARRA MENU --------------------------------------------*/
+.contenedor-menu {
+    width: 100%;
+    height: 60px;
+    background: #2b4a93;
+    display: flex;
+}
+
+.logo {
+    width: 90px;
+    height: 55px;
+}
+
+.logoMovie {
+    margin: 2px;
+    width: 90px;
+    height: 55px;
+}
+
+.nombreApp {
+    width: 285px;
+}
+
+.nombreApp h2 {
+    font-size: 45px;
+    letter-spacing: 3px;
+}
+
+.nombreApp span {
+    color: rgb(255, 255, 255);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.opciones-menu {
+    width: 900px;
+    height: 60px;
+    float: left;
+}
+
+ul {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+ul li {
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 18px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: aliceblue;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover {
+    color: rgb(0, 206, 209);
+    font-size: 23px;
+}
+
+
+.nombreUsuario {
+    width: 250px;
+}
+
+.nombreUsuario h3 {
+    font-size: 30px;
+    margin-top: 10px;
+    justify-content: center;
+    text-align: center;
+
+    color: #4b464a;
+    position: absolute;
+}
+
+/*
+.nombreUsuario h3::before{
+    content: attr(nombreUsu);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-right: 4px solid #17FEFF;
+    overflow: hidden;
+    color: #17FEFF;
+    animation: load 4s linear infinite;
+}
+
+@keyframes load{
+    0%, 10%, 100%{
+        width: 0;
+    }
+    60%, 80%{
+        width: 100%;
+    }
+}
+*/
+
+.btn-cerrar {
+    width: 140px;
+    height: 40px;
+    margin: 7px;
+    border-radius: 45px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-cerrar:hover {
+    background: #2ceae5;
+    transform: translateY(-5px);
+    color: black;
+    box-shadow: 0px 10px 25px rgba(46, 223, 229, 0.445);
+}
+
+/*-------------------------------------------- LOGIN --------------------------------------------*/
+
+.login-general {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contendor-login {
+    margin-top: 100px;
+    width: 600px;
+    height: 500px;
+    background: rgb(0, 0, 0);
+    border-radius: 14px;
+}
+
+.contendor-login h2 {
+    margin: 15px 0 15px 0;
+    padding: 14px;
+    text-align: center;
+    font-size: 60px;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.contendor-login span {
+    color: #b112eb;
+}
+
+.login {
+    display: grid;
+    grid-template-rows: repeat(5 1fr);
+    justify-content: center;
+    gap: 50px;
+}
+
+.login label {
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.btn-login:hover {
+    box-shadow: 0 0 20px #b112eb, 0 0 40px #b112eb;
+    border: 4px solid #b112eb;
+    font-weight: bold;
+    background: #b112eb;
+    color: #000;
+    transition: box-shadow 2s, border 1.5s, background 1.5s, color 1.5s;
+}
+
+.login input {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    font-size: 1.3rem;
+    color: white;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+
+.btn-login {
+    width: 200px;
+    height: 70px;
+    border-radius: 45px;
+    font-size: 30px;
+    font-weight: bold;
+    background: #000;
+    color: #fff;
+    border: 1px solid;
+    transition: all 1s ease;
+    border: 4px solid lightblue;
+    transition-delay: 0.2s;
+    cursor: pointer;
+}
+
+.adminadmin {
+    display: block;
+    cursor: pointer;
+}
+
+/*-------------------------------------------- ADMINISTRADOR --------------------------------------------*/
+
+.administrador-total {
+    /*background-color: rgb(160, 4, 171);*/
+    width: 100%;
+    /*height: 700px;*/
+}
+
+/*------------------------ VISTAS ADMIN OPCIONES ------------------------*/
+.contenedor-admin {
+    height: 726px;
+}
+
+/*------------------------ MENU CARGA MASIVA ------------------------*/
+.cargamasiva {
+    display: flex;
+    gap: 30px;
+    width: 1620px;
+    height: 100px;
+    /*background: #4776e6;*/
+    margin: auto;
+    padding-top: 50px;
+    padding-left: 45px;
+}
+
+.cargamasiva label {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.vistasadmin {
+    width: 350px;
+    height: 500px;
+    margin-left: 17.5px;
+    padding-top: 50px;
+    padding-left: 45px;
+    /*background: #000;*/
+}
+
+/*------------------------ VISTA GRAFOS ------------------------*/
+.cont-grafos {
+    display: grid;
+    grid-template-rows: repeat(4 1fr);
+    gap: 50px;
+    margin-top: 40px;
+}
+
+.cont-grafos .btn-grafo {
+    width: 300px;
+    height: 50px;
+    background: #2ceae5;
+    border: none;
+    display: block;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #000;
+    box-shadow: 5px 5px 0px #063f77;
+    transition: 0.1s;
+}
+
+.cont-grafos .btn-grafo:hover {
+    box-shadow: 0px 0px 0px #0080ff;
+    cursor: pointer;
+    transform: translateX(5px) translateY(5px);
+}
+
+.ver-grafo {
+    width: 1000px;
+    height: 550px;
+    /*background: rgb(65, 64, 64);*/
+    margin-top: -550px;
+    margin-left: 412.5px;
+}
+
+.grafo {
+    background: white;
+    width: 950px;
+    height: 500px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+/*------------------------ MENU BOTONES GRAFOS ------------------------*/
+.contenedor-botones {
+    width: 265px;
+    height: 550px;
+    /*background: rgb(48, 14, 14);*/
+    margin-top: -550px;
+    margin-left: 1412.5px;
+}
+
+.listabotones {
+    width: 265px;
+    height: 550px;
+    display: grid;
+    grid-template-rows: repeat(2 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-util {
+    width: 200px;
+    height: 50px;
+    background: #2ceae5;
+    border: none;
+    display: block;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #000;
+    box-shadow: 5px 5px 0px #0300cc;
+    transition: 0.1s;
+}
+
+.btn-util:hover {
+    box-shadow: 0px 0px 0px #0080ff;
+    cursor: pointer;
+    transform: translateX(5px) translateY(5px);
+}
+
+/*-------------------------------------------- BLOCKCHAIN --------------------------------------------*/
+
+/*------------------------ OPCIONES ------------------------*/
+.blockchain-general {
+    width: 100%;
+    height: 1540 px;
+    /*background: #000;*/
+}
+
+/*------------------------ MENU OPCIONES BOCK ------------------------*/
+.contenedor-opciones {
+    /*background: #dd00ff;*/
+    height: 150px;
+}
+
+.contenedor-opciones h2 {
+    height: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.blockchainMod {
+    height: 100px;
+    display: flex;
+    /*background: #2ceae5;*/
+    padding-left: 15px;
+    gap: 120px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.label-seg {
+    width: 500px;
+    display: flex;
+    height: 50px;
+}
+
+.label-seg input {
+    font-size: 20px;
+    text-align: center;
+}
+
+.label-seg h2 {
+    font-size: 25px;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-block {
+    width: 300px;
+    height: 40px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background: #171717;
+    color: white;
+    border: none;
+    transition: all 0.4s;
+}
+
+.btn-block:hover {
+    border-radius: 5px;
+    transform: translateY(-10px);
+    box-shadow: 0 7px 0 -2px#e859f8, 0 15px 0 -4px #0cbfd7, 0 16px 10px -3px #0cbfd7;
+}
+
+#btn-block2 {
+    font-size: 1em;
+    width: 100px;
+    height: 30px;
+}
+
+/*------------------------ VISTA BLOQUES ------------------------*/
+
+.blockain-cont {
+    width: 100%;
+}
+
+.vistabloquee {
+    width: 1600px;
+    height: 600px;
+    /*background: #0300cc;*/
+    display: grid;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.vistabloquee h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.bloques {
+    width: 1200px;
+    height: 500px;
+    background: white;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+/*------------------------ VISTA MERKLE ------------------------*/
+.merkle-cont {
+    width: 100%;
+}
+
+.vistamerkle {
+    width: 1600px;
+    height: 600px;
+    /*background: #3a37d3;*/
+    display: grid;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.vistamerkle h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.merkle {
+    width: 1200px;
+    height: 500px;
+    background: white;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+/*-------------------------------------------- USUARIO --------------------------------------------*/
+
+.usuario-total {
+    width: 100%;
+    height: 600px;
+    /*background: #171717;*/
+}
+
+.principal-usuario {
+    width: 100%;
+    height: auto;
+    /*background: #bd5252;*/
+}
+
+.encabezado-usuario {
+    width: 100%;
+    height: 100px;
+    /*background: rgb(168, 20, 20);*/
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.btn-usuario {
+    width: 300px;
+    height: 40px;
+    font-size: 1.1em;
+    cursor: pointer;
+    background: #171717;
+    color: white;
+    border: none;
+    transition: all 0.4s;
+}
+
+.btn-usuario:hover {
+    border-radius: 5px;
+    transform: translateY(-10px);
+    box-shadow: 0 7px 0 -2px#e859f8, 0 15px 0 -4px #0cbfd7, 0 16px 10px -3px #0cbfd7;
+}
+
+.ordenar {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn-usu-as {
+    margin-top: 10px;
+    width: 100px;
+    font-size: 15px;
+}
+
+#btn-usu-des {
+    margin-top: 10px;
+    width: 100px;
+    font-size: 15px;
+}
+
+#btn-usu-ac {
+    margin: auto;
+}
+
+#btn-usu-cat {
+    margin: auto;
+}
+
+.listapeliculas {
+    width: 100%;
+    height: auto;
+}
+
+.peliculasss {
+    display: flex;
+    margin-left: 14px;
+    margin-top: 15px;
+
+}
+
+#img-peli {
+    width: 100px;
+}
+
+#titulo-peli {
+    text-align: center;
+    width: 300px;
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+#descripcion-peli {
+    margin-top: 10px;
+    width: 1000px;
+    text-align: center;
+}
+
+.btnpeli {
+    width: 80px;
+    height: 45px;
+    margin-right: 5px;
+    margin-top: 30px;
+}
+
+#precio-peli {
+    font-size: 15px;
+    margin: auto;
+}
+
+.botonesactores {
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#btn-in {
+    width: 200px;
+}
+
+#btn-pre {
+    width: 200px;
+}
+
+#btn-post {
+    width: 200px;
+}
+
+.listaactores {
+    text-align: center;
+}
+
+.actorrrr {
+    width: 1600px;
+    margin-top: 10px;
+    margin-left: 40px;
+    /*background: rgba(64, 137, 215, 0.244);*/
+    display: flex;
+    gap: 20px;
+
+    border-top: black 2px solid;
+    border-right: black 5px solid;
+    border-bottom: rgb(148, 8, 199) 2px solid;
+    border-left: rgb(148, 8, 199) 5px solid;
+}
+
+#imgAcc {
+    width: 100px;
+    margin-left: 50px;
+}
+
+.nombreAcc {
+    width: 400px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.descripcAcc {
+    width: 900px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.listacategoriasss {
+    width: 1500;
+    display: flex;
+    flex-wrap: wrap ;
+    margin-top: 15px;
+}
+
+
+.categoriassss {
+    width: 300px;
+    height: 300px;
+    background: rgba(111, 188, 230, 0.4);
+    display: flex;
+    border-top: black 5px solid;
+    border-right: black 5px solid;
+    border-bottom: rgb(148, 8, 199) 5px solid;
+    border-left: rgb(148, 8, 199) 5px solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.img-cate {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    transform: scaleX(-1);
+}
+
+.nombrecate {
+    width: 400px;
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contpeliculacerca{
+    width: 1100px;
+    height: 650px;
+    background: rgb(221, 221, 221);
+    position: fixed;
+    left: 300px;
+    top: 100px;
+    z-index: 5;
+    border-radius: 15px;
+}
+
+.cont-pel{
+    width: 100%;
+    height: 100%;
+    /*background: #0080ff;*/
+    display: grid;
+}
+
+.tituloPe{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 30px;
+}
+
+.descripcionPe{
+    text-align: center;
+}
+
+.cosasPeli{
+    display: flex;
+    gap: 30px;
+    margin: auto;
+    justify-items: center;
+    align-items: center;
+}
+
+.estrellas{
+    display: flex;
+    color: yellow;
+    font-size: 35px;
+}
+
+.comentarios{
+    text-align: center;
+}
+
+.comentarios span{
+    font-weight: bold;
+}
+
+.cerrpe{
+    width: 100px;
+
+}
+
+.puntuaPe{
+    width: 40px;
+    height: 45px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.comentaUsu{
+    width: 700px;
+    height: 43px;
+    font-size: 20px;
+}
+
+.btn-pee{
+    width: 200px;
+    height: 50px;
+    background-color: #1197cc;
+    box-shadow: #094c66 4px 4px 0px;
+    border-radius: 8px;
+    transition: transform 200ms, box-shadow 200ms;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-pee:active{
+    transform: translateY(4px) translateX(4px);
+    box-shadow: #094c66 0px 0px 0px;
+}
+
+.publicaCom{
+    margin: auto;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.cerrpe{
+    margin: auto;
+    width: 100px;
+    height: 50px;
+    background-color: #1197cc;
+    box-shadow: #094c66 4px 4px 0px;
+    border-radius: 8px;
+    transition: transform 200ms, box-shadow 200ms;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cerrpe:active{
+    transform: translateY(4px) translateX(4px);
+    box-shadow: #094c66 0px 0px 0px;
+}
+
+
+
+
+

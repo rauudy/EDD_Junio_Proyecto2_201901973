@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="menu-general">
+        <div class="contenedor-menu" id="contenedor-menu">
+            <div class="logo" id="logo">
+                <img src="img/Logo.png" alt="MovieCats" id="logoMovie" class="logoMovie">
+            </div>
+            <div class="nombreApp" id="nombreApp">
+                <h2><span>M</span>ovie<span>C</span>ats</h2>
+            </div>
+            <div class="opciones-menu" id="opciones-menu">
+                <ul>
+                    <li><a target="_blank" href="https://www.instagram.com/raudy_cabrera/?hl=es-la">Instagram</a></li>
+                    <li><a target="_blank" href="https://github.com/rauudy/EDD_Junio_Proyecto2_201901973">GitHub</a>
+                    </li>
+                    <li><a target="_blank"
+                            href="https://docs.google.com/document/d/1vMHeUOBR-NXm-0RWwyp5F4px4brAolhlCkRN1cmdvEI/edit">Proyecto</a>
+                    </li>
+                    <li><a href="#">Manual</a></li>
+                </ul>
+            </div>
+            <div class="nombreUsuario" id="nombreUsuario">
+                <h3 id="nombreUsu" class="nombreUsu"></h3>
+            </div>
+            <div class="cerrarsesion" id="cerrarsesion" style="display: none;">
+                <input onclick="salir()" type="button" class="btn-cerrar" value="Salir">
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------- LOGIN ----------------------------------------- -->
+    <div class="login-general" id="login-general" >
+        <div class="contendor-login" id="contendor-login">
+            <h2><span>LOGIN</span></h2>
+            <form action="formulario" class="login" id="login" name="login">
+                <input type="text" id="usuario" name="usuario" class="usuario" placeholder="Usuario">
+                <input type="password" id="password" name="password" class="password" placeholder="Password">
+
+                <label for="esAdmin" style="display: flex;" class="adminadmin" id="adminadmin">
+                    <input type="checkbox" name="esAdmin" id="esAdmin" class="esAdmin" value="esAdmin">
+                    <p>Administrador</p>
+                </label>
+                <input onclick="entrar()" type="button" class="btn-login" value="Entrar">
+            </form>
+        </div>
+    </div>
+    <!-- ----------------------------------------- ADMIN ----------------------------------------- -->
+    <div class="administrador-total" id="administrador-total" style="display: none;">
+        <!-- ----------------------------------------- ADMIN OPCIONES ----------------------------------------- -->
+        <div class="contenedor-admin" id="contenedor-admin">
+            <div class="cargamasiva" id="cargamasiva">
+                <div class="Peliculas">
+                    <label for="formPeliculas">Peliculas</label>
+                    <input class="form-control" type="file" id="formPeliculas">
+                </div>
+                <div class="Clientes">
+                    <label for="formClientes">Clientes</label>
+                    <input class="form-control" type="file" id="formClientes">
+                </div>
+                <div class="Actores">
+                    <label for="formActores">Actores</label>
+                    <input class="form-control" type="file" id="formActores">
+                </div>
+                <div class="Categorias">
+                    <label for="formCategorias">Categorias</label>
+                    <input class="form-control" type="file" id="formCategorias">
+                </div>
+            </div>
+            <div class="vistasadmin" id="vistasadmin">
+                <div class="cont-grafos" id="cont-grafos">
+                    <input onclick="mostrarAVL()" type="button" class="btn-grafo" value="Grafo Peliculas">
+                    <input onclick="mostrarClientesList()" type="button" class="btn-grafo" value="Grafo Clientes">
+                    <input onclick="mostrarABB()" type="button" class="btn-grafo" value="Grafo Actores">
+                    <input onclick="mostrarHash()" type="button" class="btn-grafo" value="Grafo Categorias">
+                </div>
+            </div>
+            <div class="ver-grafo" id="ver-grafo">
+                <div class="grafo" id="grafo"></div>
+            </div>
+            <div class="contenedor-botones" id="contenedor-botones">
+                <div class="listabotones" id="listabotones">
+                    <input onclick="" type="button" class="btn-util" value="Descargar Grafo">
+                    <input onclick="openBlockchain()" type="button" class="btn-util" value="Blockchain">
+                </div>
+            </div>
+        </div>
+        <!-- ----------------------------------------- BLOCKCHAIN ----------------------------------------- -->
+        <div class="blockchain-general" id="blockchain-general" style="display: none;">
+            <div class="contenedor-opciones" id="contenedor-opciones">
+                <h2>BLOCKCHAIN</h2>
+                <form action="FormBlock" class="blockchainMod" id="blockchainMod" name="blockchainMod">
+                    <label for="tiempo" class="label-seg" id="label-seg">
+                        <input type="text" id="tiempo" name="tiempo" class="tiempo" placeholder="Seg.">
+                        <h2>Segundos.</h2>
+                    </label>
+                    <input onclick="" type="button" class="btn-block" id="btn-block-Mod" value="Modificar Tiempo">
+                    <input onclick="" type="button" class="btn-block" id="btn-block-Gen" value="Generar Bloque Ahora">
+                    <input onclick="minimizar()" type="button" class="btn-block" id="btn-block2" value="Minimizar">
+                </form>
+            </div>
+            <div class="blockain-cont" id="blockain-cont">
+                <div class="vistabloquee" id="vistabloquee">
+                    <h2>Bloques</h2>
+                    <div class="bloques" id="bloques"></div>
+                </div>
+            </div>
+            <div class="merkle-cont" id="merkle-cont">
+                <div class="vistamerkle" id="vistamerkle">
+                    <h2>Arbol Merkle</h2>
+                    <div class="merkle" id="merkle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------- USUARIO ----------------------------------------- -->
+    <div class="usuario-total" id="usuario-total" style="display: none;">
+        <div class="principal-usuario" id="principal-usuario">
+            <div class="encabezado-usuario" id="encabezado-usuario">
+                <label for="btn-usuario" class="ordenar" id="ordenar">
+                    <h2>Orden</h2>
+                    <input onclick="ascedente()" type="button" class="btn-usuario" id="btn-usu-as" value="Ascendente">
+                    <input onclick="descendente()" type="button" class="btn-usuario" id="btn-usu-des"
+                        value="Descendente">
+                </label>
+                <input onclick=" verActoresABB()" type="button" class="btn-usuario" id="btn-usu-ac" value="Ver Actores">
+                <input onclick="verCategoriasMosaico()" type="button" class="btn-usuario" id="btn-usu-cat" value="Ver Categorias">
+            </div>
+            <div class="cont-lista">
+                <h2 style="text-align: center;">Peliculas</h2>
+                <div class="listapeliculas" id="listapeliculas">
+
+                </div>
+            </div>
+            <div class="cont-actores" id="cont-actores" style="display: none;">
+                <div class="vistadeactores" id="vistadeactores">
+                    <h2 style="text-align: center;">Actores</h2>
+                    <div class="botonesactores" id="botonesactores">
+                        <input onclick="enordenn()" type="button" class="btn-usuario" id="btn-in" value="En Orden">
+                        <input onclick="preordenn()" type="button" class="btn-usuario" id="btn-pre" value="Pre Orden">
+                        <input onclick="postordenn()" type="button" class="btn-usuario" id="btn-post"
+                            value="Post orden">
+                    </div>
+                    <div class="listaactores" id="listaactores">
+
+                    </div>
+                </div>
+            </div>
+            <div class="cont-categorias" id="cont-categorias">
+                <div class="vistadecategorias" id="vistadecategorias">
+                    <h2 style="text-align: center; margin-top: 15px;">Categorias</h2>
+                    <div class="mosaico-cate" id="mosaico-cate">
+                        <div class="listacategoriasss" id="listacategoriasss">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedorvistaPelicula" id="contenedorvistaPelicula" style="display: none;">
+                <div class="contpeliculacerca" id="contpeliculacerca">
+                    <div class="cont-pel" id="cont-pel">
+                        <h2 class="tituloPe" id="tituloPe">Titulo de Pelicula</h2>
+                        <p class="descripcionPe" id="descripcionPe">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus quia provident ea quod, perspiciatis sequi nostrum suscipit magni fuga eos neque quaerat, harum fugit atque magnam ab repellendus id excepturi!</p>
+                        <div class="cosasPeli" id="cosasPeli">
+                            <input class="btn-pee" type="button" value="Alquilar">
+                            <input class="btn-pee" type="button" value="Modificar Puntuacion">
+                            <input type="text" name="puntua" id="puntuaPe" class="puntuaPe">
+                            <div class="estrellas" id="estrellas">
+                                <!--ESTRELLAS PELI-->
+                                <p>★</p>
+                                <p>★</p>
+                                <p>★</p>
+                                <p>★</p>
+                                <p>★</p>
+                            </div>
+                            <h3 class="preciope" id="preciope">Q. 1545</h3>
+                        </div>
+                        <div class="comentarios" id="comentarios">
+                            <p id="comee" class="comee"><span>Raudy</span>: muy bueno</p>
+                            <p id="comee" class="comee"><span>David</span>: Me gusta mucho</p>
+                        </div>
+                        <div class="publicaCom" id="publicaCom">
+                            <input type="text" name="txtcom" id="comentaUsu" class="comentaUsu">
+                            <input onclick="" type="button" value="Publicar" class="btn-pee" id="btnpeliiii">
+                        </div>
+                        <input onclick="cerrarinfo()" type="button" value="Cerrar" id="cerrpe" class="cerrpe">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="//d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
