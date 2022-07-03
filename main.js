@@ -1,3 +1,11 @@
+function descargarGrafo() {
+    html2canvas($('#contenedor-admin')[0])
+    .then(function (canvas) {
+        return Canvas2Image.saveAsPNG(canvas);
+        $(".response").append(canvas);
+    });
+}
+
 //---------------------------------------------------------------- ABB
 class NodeB {
     constructor(dato) {
@@ -139,7 +147,7 @@ class GrafoABB {
         acumuladores[0] += acumuladores[1] + "\n}";
         //console.log(acumuladores[0]);
 
-        d3.select("#grafo").graphviz()
+        d3.select("#lienzo").graphviz()
             .width("100%")
             .height("100%")
             .fit(true)
@@ -301,7 +309,7 @@ class GrafoAVL {
         acumuladores[0] += acumuladores[1] + "\n}";
 
         //console.log(acumuladores[0]);      
-        d3.select("#grafo").graphviz()
+        d3.select("#lienzo").graphviz()
             .width("100%")
             .height("100%")
             .fit(true)
@@ -578,7 +586,7 @@ class ListaEnlazada {
         codigodot += "{rank=same;\n" + conexiones + "\n}\n}";
         //console.log(codigodot);
 
-        d3.select("#grafo").graphviz()
+        d3.select("#lienzo").graphviz()
             .width("100%")
             .height("100%")
             .fit(true)
@@ -702,6 +710,65 @@ class ListadeListas {
         //console.log(codigodot);
 
         d3.select("." + div).graphviz()
+            .width("100%")
+            .height("100%")
+            .fit(true)
+            .renderDot(codigodot)
+    }
+
+    graficarrrrr(){
+        var codigodot = "digraph G{\nbgcolor=\"transparent\"\nlabel=\" ListadeListas \";\nnode [shape=box width=2];\n";
+        var temporal = this.cabecera;
+        var conexiones = "";
+        var conexiones2 = "";
+        var nodos = "";
+        var numnodo = 100;
+        var numnodo2 = 111;
+        while (temporal != null) {
+            nodos += "N" + numnodo + "[label=\"" + temporal.id + "\" style=filled fillcolor=white ];\n";
+            if (temporal.siguiente != null) {
+                var auxnum = numnodo + 1;
+                conexiones += "N" + numnodo + " -> N" + auxnum + ";\n";
+            }
+            var cabeza = true;
+            if (this.existeCabeza(temporal.id)) {
+                //console.log("HOLAAAAAAAAAAAAAAAAAAAAAAAAA")
+                var temporalnodolistasimple = temporal.abajo;
+                while (temporalnodolistasimple != null) {
+                    nodos += "B" + numnodo2 + "[label=\"" + temporalnodolistasimple.nombre + "\" style=filled fillcolor=white];\n";
+                    if (temporalnodolistasimple.siguiente != null) {
+                        if (cabeza) {
+                            conexiones2 += "{rank=same;\n";
+                            conexiones2 += "N" + numnodo + " -> B" + numnodo2 + ";\n";
+                            console.log("N" + numnodo + " -> B" + numnodo2);
+                        }
+                        var auxnum2 = numnodo2 + 1;
+                        conexiones2 += "B" + numnodo2 + " -> B" + auxnum2 + ";\n";
+                    }
+                    conexiones2 += "{rank=same;\n";
+                    conexiones2 += "N" + numnodo + " -> B" + numnodo2 + ";\n";
+                    conexiones2 += "}";
+                    //console.log("N" + numnodo + " -> B" + numnodo2);
+                    //console.log("N" + numnodo + " -> B" + numnodo2);
+                    temporalnodolistasimple = temporalnodolistasimple.siguiente;
+                    numnodo2++;
+                    cabeza = false;
+                }
+                conexiones2 += "}";
+            }
+            temporal = temporal.siguiente;
+            numnodo++;
+        }
+
+
+        codigodot += "//agregando nodos\n";
+        codigodot += nodos + "\n";
+        codigodot += "//agregando conexiones o flechas\n";
+        codigodot += "{\n" + conexiones + "\n}\n";
+        codigodot += "{\n" + conexiones2 + "\n}\n}";
+        console.log(codigodot);
+
+        d3.select(".lienzo").graphviz()
             .width("100%")
             .height("100%")
             .fit(true)
@@ -889,7 +956,7 @@ function cargaCategorias(e) {
             mod = id_categoria % 20;
             //console.log(mod);
 
-            listalista.insertar("5", company);
+            listalista.insertar(mod.toString(), company);
             listaCate.agregar(new categoria(id_categoria, company))
         }
     }
@@ -955,7 +1022,8 @@ function mostrarABB() {
 }
 
 function mostrarHash() {
-    listalista.grafic("grafo")
+    //listalista.grafic("lienzo")
+    listalista.graficarrrrr();
 }
 
 function ascedente() {
@@ -1063,19 +1131,10 @@ function comentarrrrrr() {
             }
         }
     }
-
-
-
     //listaPelis.buscarPel(nombrePelicc,mandarCom);
     //listaPelis.vercomentario(nombrePelicc);
 
     document.getElementById("comentaUsu").value = "";
     document.getElementById("puntuaPe").value = "";
-}
-
-function descargarGrafo() {
-    html2canvas($('#grafo')[0]).then(function (canvas) {
-        return Canvas2Image.saveAsPNG(canvas);
-    });
 }
 

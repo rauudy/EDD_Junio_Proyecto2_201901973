@@ -301,14 +301,10 @@ ul li a:hover {
     margin-left: 412.5px;
 }
 
-.grafo {
+.lienzo {
     background: white;
     width: 950px;
     height: 500px;
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     margin-left: 25px;
     margin-top: 25px;
 }
