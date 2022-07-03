@@ -137,11 +137,12 @@ class GrafoABB {
         }
 
         acumuladores[0] += acumuladores[1] + "\n}";
-        console.log(acumuladores[0]);
+        //console.log(acumuladores[0]);
 
         d3.select("#grafo").graphviz()
-            .width(900)
-            .height(450)
+            .width("100%")
+            .height("100%")
+            .fit(true)
             .renderDot(acumuladores[0])
     }
 
@@ -301,6 +302,9 @@ class GrafoAVL {
 
         //console.log(acumuladores[0]);      
         d3.select("#grafo").graphviz()
+            .width("100%")
+            .height("100%")
+            .fit(true)
             .renderDot(acumuladores[0])
     }
 
@@ -429,6 +433,46 @@ class ListaEnlazada {
         }
     }
 
+    buscarPel(valor, comentario) {
+        if (this.head != null) {
+            let existe = false;
+            let aux = this.head;
+            while (aux != null && existe == false) {
+                if (aux.dato.nombre_pelicula == valor) {
+                    existe = true;
+                    //console.log(`Si se encontro el dato "${aux.dato.usuario}" en la lista`);
+                    conosole.log(comentario);
+                }
+                aux = aux.siguiente;
+            }
+            if (existe == false) {
+                console.log(`No se encontro el dato "${valor}" en la lista`)
+            }
+        } else {
+            console.log("Esta Vacia");
+        }
+    }
+
+    vercomentario(valor) {
+        if (this.head != null) {
+            let existe = false;
+            let aux = this.head;
+            while (aux != null && existe == false) {
+                if (aux.dato.nombre_pelicula == valor) {
+                    existe = true;
+                    //console.log(`Si se encontro el dato "${aux.dato.usuario}" en la lista`);
+                    aux.dato.comentarios;
+                }
+                aux = aux.siguiente;
+            }
+            if (existe == false) {
+                console.log(`No se encontro el dato "${valor}" en la lista`)
+            }
+        } else {
+            console.log("Esta Vacia");
+        }
+    }
+
     mostrarUsuario() {
         if (this.head != null) {
             let aux = this.head;
@@ -498,11 +542,11 @@ class ListaEnlazada {
             let aux = this.head;
             let contador = 0;
             while (aux != null) {
-                let txt = "<div id=\"p"+contador+"\"><div class=\"peliculasss\" id=\"peliculasss\">";
+                let txt = "<div id=\"p" + contador + "\"><div class=\"peliculasss\" id=\"peliculasss\">";
                 txt += "<img src=\"img/pelis.png\" alt=\"\" id=\"img-peli\">";
                 txt += "<h4 id=\"titulo-peli\">" + aux.dato.nombre_pelicula + "</h4>";
                 txt += "<p id=\"descripcion-peli\">" + aux.dato.descripcion + "</p>";
-                txt += "<input onclick=\"info('"+aux.dato.nombre_pelicula+"', '"+aux.dato.descripcion+"','"+aux.dato.puntuacion_star+"','"+aux.dato.precio_Q+"')\" type=\"button\" value=\"Info\" id=\"info-peli\" class=\"btnpeli\">";
+                txt += "<input onclick=\"info('" + aux.dato.nombre_pelicula + "', '" + aux.dato.descripcion + "','" + aux.dato.puntuacion_star + "','" + aux.dato.precio_Q + "')\" type=\"button\" value=\"Info\" id=\"info-peli\" class=\"btnpeli\">";
                 txt += "<input onclick=\"\" type=\"button\" value=\"Alquilar\" id=\"alquilar-peli\" class=\"btnpeli\">";
                 txt += "<h4 id=\"precio-peli\">Q. " + aux.dato.precio_Q + "</h4>";
                 document.getElementById("listapeliculas").innerHTML += txt;
@@ -532,9 +576,12 @@ class ListaEnlazada {
         codigodot += nodos + "\n";
         codigodot += "//agregando conexiones o flechas\n";
         codigodot += "{rank=same;\n" + conexiones + "\n}\n}";
-        console.log(codigodot);
+        //console.log(codigodot);
 
         d3.select("#grafo").graphviz()
+            .width("100%")
+            .height("100%")
+            .fit(true)
             .renderDot(codigodot)
     }
 }
@@ -652,11 +699,12 @@ class ListadeListas {
         codigodot += "//agregando conexiones o flechas\n";
         codigodot += "{\n" + conexiones + "\n}\n";
         codigodot += "{\n" + conexiones2 + "\n}\n}";
-        console.log(codigodot);
+        //console.log(codigodot);
 
         d3.select("." + div).graphviz()
-            .width(950)
-            .height(500)
+            .width("100%")
+            .height("100%")
+            .fit(true)
             .renderDot(codigodot)
     }
 
@@ -713,6 +761,7 @@ var abba = new arABB();
 var grafoAVL = new GrafoAVL();
 var grafoABB = new GrafoABB();
 
+var arregloComentarios = [];
 
 
 //---------------------------------------------------------------- FUNCION CARGAR PELICULAS
@@ -737,12 +786,14 @@ function cargaPeliculas(e) {
             let puntuacion_star = users.puntuacion_star;
             let precio_Q = users.precio_Q;
 
-            let desc = descripcion.replace("\r\n","");
+            let desc = descripcion.replace("\r\n", "");
 
             //console.log(id_pelicula,nombre_pelicula,descripcion,puntuacion_star,precio_Q);
 
-            arbolAVL.insertar(new pelicula(id_pelicula, nombre_pelicula, descripcion, puntuacion_star, precio_Q));
+            arbolAVL.insertar(new pelicula(id_pelicula, nombre_pelicula, desc, puntuacion_star, precio_Q));
             listaPelis.agregar(new pelicula(id_pelicula, nombre_pelicula, desc, puntuacion_star, precio_Q));
+
+            arregloComentarios.push([nombre_pelicula]);
         }
     }
     lector.readAsText(archivo);
@@ -799,9 +850,11 @@ function cargaActores(e) {
             let correo = users.correo;
             let descripcion = users.descripcion;
 
+            let desc = descripcion.replace("\r\n", "");
+
             //console.log(dni,nombre_actor,correo,descripcion);
-            arbolABB.insertar(new actor(dni, nombre_actor, correo, descripcion));
-            abba.insertar(new actor(dni, nombre_actor, correo, descripcion));
+            arbolABB.insertar(new actor(dni, nombre_actor, correo, desc));
+            abba.insertar(new actor(dni, nombre_actor, correo, desc));
         }
     }
     lector.readAsText(archivo);
@@ -834,10 +887,10 @@ function cargaCategorias(e) {
 
             //console.log("Categoria: " + id_categoria + " Compania: " + company);
             mod = id_categoria % 20;
-            console.log(mod);
+            //console.log(mod);
 
             listalista.insertar("5", company);
-            listaCate.agregar(new categoria(id_categoria,company))
+            listaCate.agregar(new categoria(id_categoria, company))
         }
     }
     lector.readAsText(archivo);
@@ -878,6 +931,7 @@ function salir() {
     document.getElementById("cerrarsesion").style.display = "none";
     document.getElementById("usuario-total").style.display = "none";
     document.getElementById("cont-actores").style.display = "none";
+    document.getElementById("cont-categorias").style.display = "none";
 }
 
 function openBlockchain() {
@@ -908,21 +962,21 @@ function ascedente() {
     document.getElementById("listapeliculas").innerHTML = "";
     listaPelis.ordenAsc();
     listaPelis.verPeliculasLIsta();
-    console.log("Ascedente");
+    //console.log("Ascedente");
 }
 
 function descendente() {
     document.getElementById("listapeliculas").innerHTML = "";
     listaPelis.ordenDes();
     listaPelis.verPeliculasLIsta();
-    console.log("Descendente");
+    //console.log("Descendente");
 }
 
-function verActoresABB(){
+function verActoresABB() {
     document.getElementById("cont-actores").style.display = "";
 }
 
-function verCategoriasMosaico(){
+function verCategoriasMosaico() {
     document.getElementById("cont-categorias").style.display = "";
     listaCate.verMosaicoCategorias();
 }
@@ -940,24 +994,38 @@ function postordenn() {
     abba.postorden();
 }
 
-function info(titulo,descripcionn,estrellas,precio){
+function info(titulo, descripcionn, estrellas, precio) {
     document.getElementById("contenedorvistaPelicula").style.display = "";
     document.getElementById("estrellas").innerHTML = "";
     document.getElementById("tituloPe").innerHTML = titulo;
     document.getElementById("descripcionPe").innerHTML = descripcionn;
-    document.getElementById("preciope").innerHTML = "Q. " +precio;
+    document.getElementById("preciope").innerHTML = "Q. " + precio;
     for (let index = 0; index < estrellas; index++) {
         document.getElementById("estrellas").innerHTML += "<p>★</p>";
     }
+
+
+    for (let index = 0; index < arregloComentarios.length; index++) {
+        for (let j = 0; j < arregloComentarios[index].length - 1; j++) {
+            if (titulo == arregloComentarios[index][0]) {
+                let comenta = arregloComentarios[index][j + 1];
+                let cm = "<p id=\"comee\" class=\"comee\">" + comenta + "</p>";
+                document.getElementById("comentarios").innerHTML += cm;
+            } else {
+
+            }
+        }
+    }
 }
 
-function cerrarinfo(){
+function cerrarinfo() {
     document.getElementById("contenedorvistaPelicula").style.display = "none";
+    document.getElementById("comentaUsu").value = "";
 }
 
-function cambiarEstrellas(){
+function cambiarEstrellas() {
     let estre = document.cambioEst.puntua.value;
-    if (estre<=5) {
+    if (estre <= 5) {
         document.getElementById("estrellas").innerHTML = "";
         for (let index = 0; index < estre; index++) {
             document.getElementById("estrellas").innerHTML += "<p>★</p>";
@@ -968,4 +1036,46 @@ function cambiarEstrellas(){
             document.getElementById("estrellas").innerHTML += "<p>★</p>";
         }
     }
+    document.getElementById("puntuaPe").value = "";
 }
+
+function comentarrrrrr() {
+    let comentario = document.comentarrr.txtcom.value;
+    //console.log(usu + ": " + comentario);
+
+    let nombrePelicc = document.getElementById("tituloPe").childNodes[0].textContent;
+    //let mandarCom = usu + ": " + comentario + ". Comento en: " + nombrePelicc;
+    let mandarCom = usu + ": " + comentario;
+    //console.log(mandarCom);
+
+    /*
+    for (let index = 0; index < arregloComentarios.length; index++) {
+        if (nombrePelicc == arregloComentarios[index]) {
+            arregloComentarios[index].push(mandarCom);
+        }
+    }*/
+
+    for (let index = 0; index < arregloComentarios.length; index++) {
+        for (let j = 0; j < arregloComentarios[index].length; j++) {
+            if (nombrePelicc == arregloComentarios[index][0]) {
+                arregloComentarios[index].push(mandarCom);
+                break;
+            }
+        }
+    }
+
+
+
+    //listaPelis.buscarPel(nombrePelicc,mandarCom);
+    //listaPelis.vercomentario(nombrePelicc);
+
+    document.getElementById("comentaUsu").value = "";
+    document.getElementById("puntuaPe").value = "";
+}
+
+function descargarGrafo() {
+    html2canvas($('#grafo')[0]).then(function (canvas) {
+        return Canvas2Image.saveAsPNG(canvas);
+    });
+}
+
